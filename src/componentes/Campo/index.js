@@ -1,0 +1,17 @@
+import './Campo.css';
+
+const Campo = (props) => {
+    
+    const aoDigitado = (evento) => {
+        props.aoAlterado(evento.target.value);
+    }
+
+    return (
+        <div className="campo">
+            <label>{props.label}</label>
+            <input type={props.type} value={props.valor} onChange={aoDigitado} required={props.obrigatorio} placeholder={props.placeholder} />
+        </div>
+    );
+};
+
+export default Campo;
