@@ -12,37 +12,37 @@ function App() {
       nome: 'Programação',
       cor: '#57C278',
       id: uuidv4()
-      
+
     },
     {
       nome: 'Front-end',
       cor: '#82CFFA',
       id: uuidv4()
-      
+
     },
     {
       nome: 'Data Science',
       cor: '#A6D157',
       id: uuidv4()
-      
+
     },
     {
       nome: 'Devops',
       cor: '#E06B69',
       id: uuidv4()
-      
+
     },
     {
       nome: 'UX e Design',
       cor: '#DB6EBF',
       id: uuidv4()
-      
+
     },
     {
       nome: 'Mobile',
       cor: '#FFBA05',
       id: uuidv4()
-      
+
     },
     {
       nome: 'Inovação e Gestão',
@@ -72,9 +72,19 @@ function App() {
   };
 
   const cadastrarTime = (novoTime) => {
-    setTimes([ ...times, { ...novoTime, id: uuidv4() }])
+    setTimes([...times, { ...novoTime, id: uuidv4() }])
   };
- 
+
+  const resolverFavorito = (id) => {
+    setColaboradores(colaboradores.map(colaborador => {
+      if (colaborador.id === id) {
+        // Cria uma nova instância do objeto com a propriedade favorito atualizada
+        return { ...colaborador, favorito: !colaborador.favorito };
+      }
+      return colaborador;
+    }));
+  };
+
   return (
     <div className="App">
       <Banner />
@@ -93,6 +103,7 @@ function App() {
           colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
           aoDeletar={deletarColaborador}
           mudarCor={mudarCorDoTime}
+          aoFavoritar={resolverFavorito}
         />
       )}
 

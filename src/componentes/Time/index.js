@@ -2,23 +2,30 @@ import Colaborador from '../Colaborador';
 import './Time.css';
 import hexToRgba from 'hex-to-rgba';
 
-const Time = (props) => {
+const Time = ({ colaboradores, cor, mudarCor, id, nome, aoDeletar, aoFavoritar }) => {
     return (
         //poderia ser props.colaboradores.length > 0 && ao invés do ternário
-        (props.colaboradores.length > 0) ? <section className='time' style={{ backgroundColor: hexToRgba(props.cor, 0.5), backgroundImage: 'url(/imagens/fundo.png)' }}>
-            <input onChange={evento => props.mudarCor(evento.target.value, props.id)} value={props.cor} type='color' className='input-cor' />
-            <h3 style={{ borderColor: props.cor }}>{props.nome}</h3>
+        (colaboradores.length > 0) ? <section className='time' style={{ backgroundColor: hexToRgba(cor, 0.5), backgroundImage: 'url(/imagens/fundo.png)' }}>
+            <input
+                onChange={evento => mudarCor(evento.target.value, id)}
+                value={cor}
+                type='color'
+                className='input-cor'
+            />
+            <h3 style={{ borderColor: cor }}>{nome}</h3>
             <div className='colaboradores'>
-                {props.colaboradores.map((colaborador, indice) => {
+                {colaboradores.map((colaborador, indice) => {
                     return (
                         <Colaborador
                             key={indice}
+                            favorito={colaborador.favorito}
                             id={colaborador.id}
                             nome={colaborador.nome}
                             cargo={colaborador.cargo}
                             imagem={colaborador.imagem}
-                            corDeFundo={props.cor}
-                            aoDeletar={props.aoDeletar}
+                            corDeFundo={cor}
+                            aoDeletar={aoDeletar}
+                            aoFavoritar={aoFavoritar}
                         />
                     )
                 })}
