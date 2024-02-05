@@ -3,6 +3,8 @@ import './Time.css';
 import hexToRgba from 'hex-to-rgba';
 
 const Time = ({ colaboradores, cor, mudarCor, id, nome, aoDeletar, aoFavoritar }) => {
+    console.log(colaboradores)
+
     return (
         //poderia ser props.colaboradores.length > 0 && ao invés do ternário
         (colaboradores.length > 0) ? <section className='time' style={{ backgroundColor: hexToRgba(cor, 0.5), backgroundImage: 'url(/imagens/fundo.png)' }}>

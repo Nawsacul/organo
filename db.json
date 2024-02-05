@@ -1,0 +1,22 @@
+{
+    "colaboradores": [
+        {
+            "nome": "Lucas Queiroz",
+            "cargo": "Desenvolvedor Junior",
+            "time": "Front-end",
+            "imagem": "http://github.com/nawsacul.png"
+        },
+        {
+            "nome": "Lucas Murakami (Kenji)",
+            "cargo": "Desenvolvedor Pleno",
+            "time": "Back-end",
+            "imagem": "https://media.licdn.com/dms/image/C4D03AQEOewCAcm_g9w/profile-displayphoto-shrink_800_800/0/1611196090363?e=1712793600&v=beta&t=SbLx7my3yyfsk_uU7LQYInp7Jqg4k_xAncCLNxom0YI"
+        },
+        {
+            "nome": "Diego de Melo (Buchecha)",
+            "cargo": "Tech Manager",
+            "time": "Back-end",
+            "imagem": "https://media.licdn.com/dms/image/C4E03AQEnLGjI43avaQ/profile-displayphoto-shrink_800_800/0/1545746516835?e=1712793600&v=beta&t=u1SHuzAHgkcqeoQzpfAbBSEDm252ycQ2bxfdfjuG3lY"
+        }
+    ]
+}

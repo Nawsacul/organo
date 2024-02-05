@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Banner from './componentes/Banner';
 import Footer from './componentes/Footer';
 import Formulario from './componentes/Formulario';
@@ -17,6 +17,12 @@ function App() {
     {
       nome: 'Front-end',
       cor: '#82CFFA',
+      id: uuidv4()
+
+    },
+    {
+      nome: 'Back-end',
+      cor: '#34495E',
       id: uuidv4()
 
     },
@@ -52,6 +58,15 @@ function App() {
   ]);
 
   const [colaboradores, setColaboradores] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/colaboradores')
+      .then(resposta => resposta.json())
+      .then(dados => {
+        setColaboradores(dados)
+      })
+      .catch(e => console.log('Deu erro:' + e))
+  }, [])
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
     setColaboradores([...colaboradores, colaborador]) //"...colaboradores" pega os colaboradores antigos, "colaborador" adiciona o novo
