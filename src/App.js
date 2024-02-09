@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import Banner from './componentes/Banner';
 import Footer from './componentes/Footer';
 import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
 import { v4 as uuidv4 } from 'uuid'; //alias, apelido para alguma coisa. Poderia ser v4 as banana;
+import reducer, { CADASTRAR_MEMBRO, CADASTRAR_MEMBRO_API, DELETAR_MEMBRO, RESOLVER_FAVORITO } from './reducer';
 
 function App() {
 
@@ -57,23 +58,32 @@ function App() {
     }
   ]);
 
-  const [colaboradores, setColaboradores] = useState([]);
+  const [colaboradores, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
     fetch('http://localhost:8080/colaboradores')
       .then(resposta => resposta.json())
       .then(dados => {
-        setColaboradores(dados)
+        dispatch({
+          tipo: CADASTRAR_MEMBRO_API,
+          colaboradores: dados
+        })
       })
       .catch(e => console.log('Deu erro:' + e))
   }, [])
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
-    setColaboradores([...colaboradores, colaborador]) //"...colaboradores" pega os colaboradores antigos, "colaborador" adiciona o novo
+    dispatch({
+      tipo: CADASTRAR_MEMBRO,
+      colaborador
+    })
   };
 
   const deletarColaborador = (id) => {
-    setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id))
+    dispatch({
+      tipo: DELETAR_MEMBRO,
+      id
+    })
   }
 
   const mudarCorDoTime = (cor, id) => {
@@ -91,13 +101,10 @@ function App() {
   };
 
   const resolverFavorito = (id) => {
-    setColaboradores(colaboradores.map(colaborador => {
-      if (colaborador.id === id) {
-        // Cria uma nova instância do objeto com a propriedade favorito atualizada
-        return { ...colaborador, favorito: !colaborador.favorito };
-      }
-      return colaborador;
-    }));
+    dispatch({
+      tipo: RESOLVER_FAVORITO,
+      id: id
+    });
   };
 
   return (
